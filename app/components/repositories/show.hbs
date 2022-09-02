@@ -3,4 +3,11 @@
   {{@repository.html_url}}
   {{@repository.language}}
   {{@repository.private}}
+
+  <LinkTo
+    @route='organizations.repositories.branches'
+    @model={{@repository.name}}
+  >
+    Show Branches
+  </LinkTo>
 </fieldset>

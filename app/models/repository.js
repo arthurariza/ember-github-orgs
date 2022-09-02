@@ -1,4 +1,4 @@
-import Model, { attr, belongsTo } from '@ember-data/model';
+import Model, { attr, belongsTo, hasMany } from '@ember-data/model';
 
 export default class RepositoryModel extends Model {
   @attr('string') name;
@@ -6,4 +6,5 @@ export default class RepositoryModel extends Model {
   @attr('string') language;
   @attr('boolean') private;
   @belongsTo('organization') organization;
+  @hasMany('branch') branches;
 }

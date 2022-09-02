@@ -11,7 +11,9 @@ Router.map(function () {
     'organizations',
     { path: '/organizations/:organization' },
     function () {
-      this.route('repositories');
+      this.route('repositories', function () {
+        this.route('branches', { path: '/:repository/branches' });
+      });
     }
   );
 });

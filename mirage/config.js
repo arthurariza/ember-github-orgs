@@ -23,5 +23,9 @@ export default function () {
     https://www.ember-cli-mirage.com/docs/route-handlers/shorthands
   */
 
-  this.get('/orgs/:id');
+  this.get('/orgs/:id', (schema, request) => {
+    let id = request.params.id;
+
+    return schema.organization.find(id);
+  });
 }

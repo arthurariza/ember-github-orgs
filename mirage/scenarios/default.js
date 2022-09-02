@@ -3,7 +3,7 @@ export default function (server) {
     Seed your development database using your factories.
     This data will not be loaded in your tests.
   */
-  // server.createList('post', 10);
 
-  server.createList('organization', 1);
+  const organization = server.create('organization');
+  server.createList('repository', 30, { organization });
 }

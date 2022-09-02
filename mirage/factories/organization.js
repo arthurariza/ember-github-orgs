@@ -5,7 +5,7 @@ export default Factory.extend({
     return 'rails';
   },
   name() {
-    return 'Ruby on Rails';
+    return 'Ruby On Rails';
   },
 
   html_url() {

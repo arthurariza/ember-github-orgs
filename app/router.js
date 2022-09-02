@@ -7,5 +7,11 @@ export default class Router extends EmberRouter {
 }
 
 Router.map(function () {
-  this.route('organizations', { path: '/organizations/:organization' });
+  this.route(
+    'organizations',
+    { path: '/organizations/:organization' },
+    function () {
+      this.route('repositories');
+    }
+  );
 });

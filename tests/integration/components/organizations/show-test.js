@@ -2,25 +2,32 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'orgs/tests/helpers';
 import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
+import { setupMirage } from 'ember-cli-mirage/test-support';
 
 module('Integration | Component | organizations/show', function (hooks) {
   setupRenderingTest(hooks);
+  setupMirage(hooks);
 
   test('it renders', async function (assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
+    assert.expect(4);
 
-    await render(hbs`<Organizations::Show />`);
+    const model = this.server.create('organization');
 
-    assert.dom(this.element).hasText('');
+    this.set('organization', model);
 
-    // Template block usage:
-    await render(hbs`
-      <Organizations::Show>
-        template block text
-      </Organizations::Show>
-    `);
+    await render(
+      hbs`<Organizations::Show @organization={{this.organization}} />`
+    );
 
-    assert.dom(this.element).hasText('template block text');
+    assert
+      .dom('[data-target-org-show-image]')
+      .hasProperty('src', this.organization.avatar_url);
+
+    assert.dom('[data-target-org-show-name]').hasText(this.organization.name);
+
+    assert
+      .dom('[data-target-org-show-html-url]')
+      .hasProperty('href', this.organization.html_url)
+      .hasProperty('target', '_blank');
   });
 });

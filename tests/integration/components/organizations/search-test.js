@@ -1,26 +1,25 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'orgs/tests/helpers';
-import { render } from '@ember/test-helpers';
+import { typeIn, render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 
 module('Integration | Component | organizations/search', function (hooks) {
   setupRenderingTest(hooks);
 
-  test('it renders', async function (assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
+  test('should render with no state', async function (assert) {
+    assert.expect(4);
 
     await render(hbs`<Organizations::Search />`);
 
-    assert.dom(this.element).hasText('');
+    assert.dom('[data-test-org-search-title]').hasText('Search');
 
-    // Template block usage:
-    await render(hbs`
-      <Organizations::Search>
-        template block text
-      </Organizations::Search>
-    `);
+    assert
+      .dom('[data-test-org-search-label]')
+      .hasText('GitHub Organization Name:');
 
-    assert.dom(this.element).hasText('template block text');
+    assert
+      .dom('[data-test-org-search-input]')
+      .hasText('')
+      .hasProperty('type', 'text');
   });
 });

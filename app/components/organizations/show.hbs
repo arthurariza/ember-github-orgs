@@ -1,13 +1,18 @@
 <div>
-  <img src={{@organization.avatar_url}} alt='Organization' />
+  <img
+    src={{@organization.avatar_url}}
+    alt='Organization'
+    data-target-org-show-image
+  />
   <div>
-    <h1>
+    <h1 data-target-org-show-name>
       {{@organization.name}}
     </h1>
     <a
       href={{@organization.html_url}}
       target='_blank'
       rel='noopener noreferrer'
+      data-target-org-show-html-url
     >
       See On Github
     </a>

@@ -1,8 +1,17 @@
-<h1>Search</h1>
+<h1 data-test-org-search-title>Search</h1>
 
 <label>
-  <span>GitHub Organization Name:</span>
-  <Input @type='text' @value={{this.organization}} id='org' />
+  <span data-test-org-search-label>GitHub Organization Name:</span>
+  <Input
+    @type='text'
+    @value={{this.organization}}
+    id='org'
+    data-test-org-search-input
+  />
 </label>
 
-<button type='button' {{on 'click' this.search}}>Search</button>
+<button
+  type='button'
+  {{on 'click' this.search}}
+  data-test-org-search-button
+>Search</button>

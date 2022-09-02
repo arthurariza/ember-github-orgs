@@ -1,0 +1,8 @@
+<h1>Search</h1>
+
+<label>
+  <span>GitHub Organization Name:</span>
+  <Input @type='text' @value={{this.organization}} id='org' />
+</label>
+
+<button type='button' {{on 'click' this.search}}>Search</button>

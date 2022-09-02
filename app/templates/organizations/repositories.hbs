@@ -1,12 +1,11 @@
 {{page-title 'Repositories'}}
 
-{{#each @model as |repo|}}
-  <fieldset data-test-repository-repo>
-    {{repo.name}}
-    {{repo.html_url}}
-    {{repo.language}}
-    {{repo.private}}
-  </fieldset>
-{{/each}}
+<Repositories::Filter @repositories={{@model}} as |repositories|>
+  {{#each repositories as |repo|}}
+    <Repositories::Show @repository={{repo}} />
+  {{else}}
+    <h5>Not Results Found</h5>
+  {{/each}}
+</Repositories::Filter>
 
 {{outlet}}

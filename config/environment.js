@@ -44,6 +44,10 @@ module.exports = function (environment) {
 
     ENV.APP.rootElement = '#ember-testing';
     ENV.APP.autoboot = false;
+
+    if (environment === 'test') {
+      ENV['ember-cli-notifications'].clearDuration = 1;
+    }
   }
 
   if (environment === 'production') {

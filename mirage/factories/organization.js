@@ -1,18 +1,18 @@
 import { Factory } from 'miragejs';
 
 export default Factory.extend({
-  login() {
-    return 'rails';
+  login(i) {
+    return `rails${i}`;
   },
-  name() {
-    return 'Ruby On Rails';
-  },
-
-  html_url() {
-    return 'https://github.com/rails';
+  name(i) {
+    return `Ruby On Rails ${i}`;
   },
 
-  avatar_url() {
-    return 'https://avatars.githubusercontent.com/u/4223?v=4';
+  html_url(i) {
+    return `https://github.com/rails${i}`;
+  },
+
+  avatar_url(i) {
+    return `https://avatars.githubusercontent.com/u/4223?v=4`;
   },
 });

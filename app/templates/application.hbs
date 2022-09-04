@@ -1,10 +1,14 @@
 {{page-title 'Orgs'}}
 
-<NotificationContainer @position='top-right' @zindex='9999' />
+<NotificationContainer
+  @position='top-right'
+  @zindex='9999'
+  data-test-error-tooltip
+/>
 
 <main class='container'>
   <h1 class='logo'>
-    <LinkTo @route='index'>
+    <LinkTo @route='index' data-test-logo>
       GitHub<span class='logo__highlight'>Orgs</span>
     </LinkTo>
   </h1>

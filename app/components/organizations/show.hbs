@@ -4,11 +4,11 @@
       src={{@organization.avatar_url}}
       alt='Organization'
       class='show__image'
-      data-target-org-show-image
+      data-test-org-show-image
     />
   </div>
   <div class='show__details'>
-    <h2 class='show__name' data-target-org-show-name>
+    <h2 class='show__name' data-test-org-show-name>
       {{@organization.name}}
     </h2>
 
@@ -17,7 +17,7 @@
       target='_blank'
       rel='noopener noreferrer'
       class='show__github-link'
-      data-target-org-show-html-url
+      data-test-org-show-html-url
     >
       See On Github
     </a>
@@ -26,7 +26,7 @@
       @route='organizations.repositories'
       @model={{@organization.login}}
       class='show__repositories-link'
-      data-target-org-show-repo-link
+      data-test-org-show-repo-link
     >
       Show Repositories
     </LinkTo>

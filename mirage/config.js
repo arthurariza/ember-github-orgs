@@ -23,9 +23,12 @@ export default function () {
     https://www.ember-cli-mirage.com/docs/route-handlers/shorthands
   */
 
-  this.get('/orgs/:id', (schema, request) => {
-    let id = request.params.id;
+  this.get('/orgs/fakeorg', { message: 'Nothing found' }, 404);
+  this.get('/orgs/:login', async (schema, request) => {
+    const { login } = request.params;
 
-    return schema.organization.find(id);
+    const model = await schema.organizations.findBy({ login });
+
+    return model?.attrs;
   });
 }

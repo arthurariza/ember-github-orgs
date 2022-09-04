@@ -1,24 +1,31 @@
-<div>
-  <img
-    src={{@organization.avatar_url}}
-    alt='Organization'
-    data-target-org-show-image
-  />
-  <div>
-    <h1 data-target-org-show-name>
+<div class='show'>
+  <div class='show__image-container'>
+    <img
+      src={{@organization.avatar_url}}
+      alt='Organization'
+      class='show__image'
+      data-target-org-show-image
+    />
+  </div>
+  <div class='show__details'>
+    <h1 class='show__name' data-target-org-show-name>
       {{@organization.name}}
     </h1>
+
     <a
       href={{@organization.html_url}}
       target='_blank'
       rel='noopener noreferrer'
+      class='show__github-link'
       data-target-org-show-html-url
     >
       See On Github
     </a>
+
     <LinkTo
       @route='organizations.repositories'
       @model={{@organization.login}}
+      class='show__repositories-link'
       data-target-org-show-repo-link
     >
       Show Repositories

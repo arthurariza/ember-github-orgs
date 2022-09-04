@@ -8,8 +8,17 @@
   <LinkTo
     @route='organizations.repositories.branches'
     @model={{@repository.name}}
-    class='button--small'
+    class='repository__button'
   >
     Show Branches
   </LinkTo>
+
+  <a
+    href={{@repository.html_url}}
+    class='repository__github-link'
+    target='_blank'
+    rel='noopener noreferrer'
+  >
+    See On GitHub
+  </a>
 </div>

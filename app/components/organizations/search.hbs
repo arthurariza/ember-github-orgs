@@ -1,17 +1,22 @@
-<h1 data-test-org-search-title>Search</h1>
+<div class='search'>
+  <label>
+    <h5 class='search__label' data-test-org-search-label>
+      GitHub Organization Name:
+    </h5>
 
-<label>
-  <span data-test-org-search-label>GitHub Organization Name:</span>
-  <Input
-    @type='text'
-    @value={{this.organization}}
-    id='org'
-    data-test-org-search-input
-  />
-</label>
+    <Input
+      @type='text'
+      @value={{this.organization}}
+      id='org'
+      class='search__input'
+      data-test-org-search-input
+    />
+  </label>
 
-<button
-  type='button'
-  {{on 'click' this.search}}
-  data-test-org-search-button
->Search</button>
+  <button
+    type='button'
+    {{on 'click' this.search}}
+    class='search__button'
+    data-test-org-search-button
+  >Search</button>
+</div>

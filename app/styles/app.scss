@@ -5,6 +5,7 @@
 @import 'organizations';
 @import 'repositories';
 @import 'branches';
+@import 'spinner';
 
 .container {
   max-width: 1100px;
@@ -20,4 +21,11 @@
   &__half {
     flex: 1;
   }
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
 }

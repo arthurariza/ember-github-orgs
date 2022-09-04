@@ -1,0 +1,5 @@
+$spinner-color: $green;
+$spinner-accent: lighten($green, 5%);
+$spinner-size: 80px;
+
+@import './node_modules/scss-spinners/spinners';

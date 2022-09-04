@@ -69,5 +69,8 @@
   },
   "ember": {
     "edition": "octane"
+  },
+  "dependencies": {
+    "scss-spinners": "^2.1.3"
   }
 }

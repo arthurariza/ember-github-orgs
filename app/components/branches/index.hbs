@@ -1,6 +1,8 @@
-<p>Number of branches: {{@branches.length}}</p>
-<ul>
-  {{#each @branches as |branch|}}
-    <li>{{branch.name}}</li>
-  {{/each}}
-</ul>
+<div class='branches'>
+  <p class='branches__length'>Number of branches: {{@branches.length}}</p>
+  <ul class='branches__list'>
+    {{#each @branches as |branch|}}
+      <li class='branches__list-item'>{{branch.name}}</li>
+    {{/each}}
+  </ul>
+</div>

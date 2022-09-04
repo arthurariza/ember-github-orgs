@@ -1,0 +1,12 @@
+.branches {
+  background-color: $white;
+  padding: 1rem;
+
+  &__length {
+    font-weight: bold;
+  }
+
+  &__title {
+    font-size: 2rem;
+  }
+}

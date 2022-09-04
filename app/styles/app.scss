@@ -4,10 +4,20 @@
 @import 'application';
 @import 'organizations';
 @import 'repositories';
+@import 'branches';
 
 .container {
   max-width: 1100px;
   margin: 0 auto;
   padding: 0 2rem;
   overflow: hidden;
+}
+
+.split-screen {
+  display: flex;
+  gap: 1rem;
+
+  &__half {
+    flex: 1;
+  }
 }

@@ -1,11 +1,17 @@
 {{page-title 'Repositories'}}
 
-<Repositories::Filter @repositories={{@model}} as |repositories|>
-  {{#each repositories as |repo|}}
-    <Repositories::Show @repository={{repo}} />
-  {{else}}
-    <h3>No Results Found</h3>
-  {{/each}}
-</Repositories::Filter>
+<div class='split-screen'>
+  <div class='split-screen__half'>
+    <Repositories::Filter @repositories={{@model}} as |repositories|>
+      {{#each repositories as |repo|}}
+        <Repositories::Show @repository={{repo}} />
+      {{else}}
+        <h3>No Results Found</h3>
+      {{/each}}
+    </Repositories::Filter>
+  </div>
 
-{{outlet}}
+  <div class='split-screen__half'>
+    {{outlet}}
+  </div>
+</div>

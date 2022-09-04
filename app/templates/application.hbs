@@ -3,6 +3,11 @@
 <NotificationContainer @position='top-right' @zindex='9999' />
 
 <main class='container'>
-  <h1 class='title'>GitHub<span class='title__highlight'>Orgs</span></h1>
+  <h1 class='logo'>
+    <LinkTo @route='index'>
+      GitHub<span class='logo__highlight'>Orgs</span>
+    </LinkTo>
+  </h1>
+
   {{outlet}}
 </main>

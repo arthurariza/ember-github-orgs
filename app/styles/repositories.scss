@@ -1,0 +1,20 @@
+.repository {
+  &__title {
+    font-size: 2rem;
+  }
+
+  &__input {
+    padding: 0.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  &__show {
+    background-color: $white;
+    padding: 1rem;
+    margin: 1rem 0;
+  }
+
+  &__label {
+    font-weight: bold;
+  }
+}

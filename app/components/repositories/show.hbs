@@ -1,13 +1,15 @@
-<fieldset data-test-repository-repo>
-  {{@repository.name}}
-  {{@repository.html_url}}
-  {{@repository.language}}
-  {{@repository.private}}
+<div class='repository__show' data-test-repository-repo>
+  <p class='repository__label'>Name: {{@repository.name}}</p>
+  <p class='repository__label'>Language:
+    {{@repository.language}}</p>
+  <p class='repository__label'>Private?:
+    {{@repository.private}}</p>
 
   <LinkTo
     @route='organizations.repositories.branches'
     @model={{@repository.name}}
+    class='button--small'
   >
     Show Branches
   </LinkTo>
-</fieldset>
+</div>

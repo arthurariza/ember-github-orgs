@@ -20,7 +20,6 @@ export default class OrganizationsRepositoriesBranchesRoute extends Route {
     }
 
     const branches = await response.json();
-    console.log(branches);
     return branches;
   }
 }

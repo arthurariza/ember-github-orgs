@@ -47,10 +47,11 @@ export default function () {
   );
 
   this.get('/repos/:login/:repository/branches', (schema, request) => {
-    const { login } = request.params;
+    const { repository } = request.params;
 
-    const org = schema.organizations.findBy({ login });
+    const branches = schema.repositories.findBy({ name: repository }).branches
+      ?.models;
 
-    return org.repositories.models[0].branches.models;
+    return branches;
   });
 }

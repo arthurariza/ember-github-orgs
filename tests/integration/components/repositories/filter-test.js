@@ -1,26 +1,94 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'orgs/tests/helpers';
-import { render } from '@ember/test-helpers';
+import { render, fillIn } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
+import { setupMirage } from 'ember-cli-mirage/test-support';
 
 module('Integration | Component | repositories/filter', function (hooks) {
   setupRenderingTest(hooks);
+  setupMirage(hooks);
 
-  test('it renders', async function (assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
+  hooks.beforeEach(function () {
+    this.setProperties({
+      repositories: [
+        ...this.server.createList('repository', 20),
+        ...this.server.createList('repository', 15, {
+          language: 'JavaScript',
+        }),
+        ,
+      ],
+    });
+  });
 
-    await render(hbs`<Repositories::Filter />`);
+  test('renders all repositories by default', async function (assert) {
+    assert.expect(5);
 
-    assert.dom(this.element).hasText('');
+    await render(hbs`<Repositories @repositories={{this.repositories}}/>`);
 
-    // Template block usage:
-    await render(hbs`
-      <Repositories::Filter>
-        template block text
-      </Repositories::Filter>
-    `);
+    assert
+      .dom('[data-test-repository-filter-title]')
+      .exists()
+      .hasText('Repositories');
 
-    assert.dom(this.element).hasText('template block text');
+    assert.dom('[data-test-repository-filter-input]').exists();
+
+    assert.dom('[data-test-repository-not-found]').doesNotExist();
+
+    assert.dom('[data-test-repository-repo]').exists({ count: 35 });
+  });
+
+  test('filters repositories by language and ignores casing', async function (assert) {
+    assert.expect(8);
+
+    await render(hbs`<Repositories @repositories={{this.repositories}}/>`);
+
+    assert
+      .dom('[data-test-repository-filter-title]')
+      .exists()
+      .hasText('Repositories');
+
+    assert.dom('[data-test-repository-filter-input]').exists();
+
+    assert.dom('[data-test-repository-not-found]').doesNotExist();
+
+    await fillIn('[data-test-repository-filter-input]', 'ruby');
+
+    assert.dom('[data-test-repository-repo]').exists({ count: 20 });
+
+    await fillIn('[data-test-repository-filter-input]', 'rUBy');
+
+    assert.dom('[data-test-repository-repo]').exists({ count: 20 });
+
+    await fillIn('[data-test-repository-filter-input]', 'javascript');
+
+    assert.dom('[data-test-repository-repo]').exists({ count: 15 });
+
+    await fillIn('[data-test-repository-filter-input]', 'JAVAscript');
+
+    assert.dom('[data-test-repository-repo]').exists({ count: 15 });
+  });
+
+  test('renders not found message when language wasnt found', async function (assert) {
+    assert.expect(7);
+
+    await render(hbs`<Repositories @repositories={{this.repositories}}/>`);
+
+    assert
+      .dom('[data-test-repository-filter-title]')
+      .exists()
+      .hasText('Repositories');
+
+    assert.dom('[data-test-repository-filter-input]').exists();
+
+    assert.dom('[data-test-repository-not-found]').doesNotExist();
+
+    await fillIn('[data-test-repository-filter-input]', 'RubyScript');
+
+    assert
+      .dom('[data-test-repository-not-found]')
+      .exists()
+      .hasText('No Results Found');
+
+    assert.dom('[data-test-repository-repo]').doesNotExist();
   });
 });

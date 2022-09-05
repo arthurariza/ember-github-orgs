@@ -1,10 +1,13 @@
-<h2 class='repository__title'>Repositories</h2>
+<h2 class='repository__title' data-test-repository-filter-title>
+  Repositories
+</h2>
 
 <Input
   @value={{this.language}}
   id='language'
   class='repository__input'
   placeholder='All Languages'
+  data-test-repository-filter-input
 />
 
 {{yield this.filtered}}

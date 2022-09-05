@@ -2,25 +2,46 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'orgs/tests/helpers';
 import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
+import { setupMirage } from 'ember-cli-mirage/test-support';
 
 module('Integration | Component | repositories/show', function (hooks) {
   setupRenderingTest(hooks);
+  setupMirage(hooks);
 
-  test('it renders', async function (assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
+  test('should render repository name, language, private, github link, and link to branches button', async function (assert) {
+    assert.expect(7);
 
-    await render(hbs`<Repositories::Show />`);
+    const organization = this.server.create('organization');
+    const repository = this.server.create('repository', {
+      organization: organization,
+    });
 
-    assert.dom(this.element).hasText('');
+    this.set('organization', organization);
+    this.set('repository', repository);
 
-    // Template block usage:
-    await render(hbs`
-      <Repositories::Show>
-        template block text
-      </Repositories::Show>
-    `);
+    await render(hbs`<Repositories::Show @repository={{this.repository}} />`);
 
-    assert.dom(this.element).hasText('template block text');
+    assert.dom('[data-test-repository-repo]').exists();
+
+    assert
+      .dom('[data-test-repository-name]')
+      .hasText(`Name: ${this.repository.name}`);
+
+    assert
+      .dom('[data-test-repository-language]')
+      .hasText(`Language: ${this.repository.language}`);
+
+    assert
+      .dom('[data-test-repository-private]')
+      .hasText(`Private?: ${this.repository.private}`);
+
+    assert
+      .dom('[data-test-repository-github-link]')
+      .hasProperty('href', this.repository.html_url);
+
+    assert
+      .dom('[data-test-repository-branches-link]')
+      .exists()
+      .hasText('Show Branches');
   });
 });

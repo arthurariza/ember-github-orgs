@@ -24,11 +24,19 @@ export default function () {
   */
 
   this.get('/orgs/fakeorg', { message: 'Nothing found' }, 404);
-  this.get('/orgs/:login', async (schema, request) => {
+  this.get('/orgs/:login', (schema, request) => {
     const { login } = request.params;
 
-    const model = await schema.organizations.findBy({ login });
+    const model = schema.organizations.findBy({ login });
 
     return model?.attrs;
+  });
+
+  this.get('/orgs/:login/repos', (schema, request) => {
+    const { login } = request.params;
+
+    const org = schema.organizations.findBy({ login });
+
+    return org.repositories.models;
   });
 }

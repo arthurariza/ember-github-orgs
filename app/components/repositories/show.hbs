@@ -1,14 +1,16 @@
 <div class='repository__show' data-test-repository-repo>
-  <p class='repository__label'>Name: {{@repository.name}}</p>
-  <p class='repository__label'>Language:
+  <p class='repository__label' data-test-repository-name>Name:
+    {{@repository.name}}</p>
+  <p class='repository__label' data-test-repository-language>Language:
     {{@repository.language}}</p>
-  <p class='repository__label'>Private?:
+  <p class='repository__label' data-test-repository-private>Private?:
     {{@repository.private}}</p>
 
   <LinkTo
     @route='organizations.repositories.branches'
     @model={{@repository.name}}
     class='repository__button'
+    data-test-repository-branches-link
   >
     Show Branches
   </LinkTo>
@@ -18,6 +20,7 @@
     class='repository__github-link'
     target='_blank'
     rel='noopener noreferrer'
+    data-test-repository-github-link
   >
     See On GitHub
   </a>

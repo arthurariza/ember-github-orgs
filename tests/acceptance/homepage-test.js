@@ -32,7 +32,9 @@ module('Acceptance | homepage', function (hooks) {
 
     try {
       await visit('/organizations/fakeorg');
-    } catch (e) {}
+    } catch (e) {
+      console.log(e);
+    }
 
     assert.strictEqual(currentURL(), '/');
   });

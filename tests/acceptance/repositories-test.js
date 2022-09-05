@@ -49,7 +49,9 @@ module('Acceptance | repositories', function (hooks) {
 
     try {
       await visit('/organizations/fakeorg/repositories');
-    } catch (e) {}
+    } catch (e) {
+      console.log(e);
+    }
 
     assert.strictEqual(currentURL(), '/');
   });

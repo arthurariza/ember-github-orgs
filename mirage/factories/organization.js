@@ -12,7 +12,7 @@ export default Factory.extend({
     return `https://github.com/rails${i}`;
   },
 
-  avatar_url(i) {
+  avatar_url() {
     return `https://avatars.githubusercontent.com/u/4223?v=4`;
   },
 });

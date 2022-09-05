@@ -1,11 +1,5 @@
 import { module, test } from 'qunit';
-import {
-  fillIn,
-  click,
-  visit,
-  currentURL,
-  pauseTest,
-} from '@ember/test-helpers';
+import { fillIn, click, visit, currentURL } from '@ember/test-helpers';
 import { setupApplicationTest } from 'orgs/tests/helpers';
 import { setupMirage } from 'ember-cli-mirage/test-support';
 
@@ -76,7 +70,9 @@ module('Acceptance | branches', function (hooks) {
       await visit(
         `/organizations/${this.organization.login}/repositories/fakerepo/branches`
       );
-    } catch (e) {}
+    } catch (e) {
+      console.log(e);
+    }
 
     assert.strictEqual(
       currentURL(),

@@ -9,7 +9,15 @@ module('Unit | Model | branch', function (hooks) {
 
     const relationship = branch.relationshipsByName.get('repository');
 
-    assert.equal(relationship.key, 'repository', 'belongs to aa repository');
-    assert.equal(relationship.kind, 'belongsTo', 'relationship is belongsTo');
+    assert.strictEqual(
+      relationship.key,
+      'repository',
+      'belongs to aa repository'
+    );
+    assert.strictEqual(
+      relationship.kind,
+      'belongsTo',
+      'relationship is belongsTo'
+    );
   });
 });

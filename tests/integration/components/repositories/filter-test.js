@@ -15,7 +15,6 @@ module('Integration | Component | repositories/filter', function (hooks) {
         ...this.server.createList('repository', 15, {
           language: 'JavaScript',
         }),
-        ,
       ],
     });
   });

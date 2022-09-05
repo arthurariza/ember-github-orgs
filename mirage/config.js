@@ -39,4 +39,18 @@ export default function () {
 
     return org.repositories.models;
   });
+
+  this.get(
+    '/repos/:login/fakerepo/branches',
+    { message: 'Nothing found' },
+    404
+  );
+
+  this.get('/repos/:login/:repository/branches', (schema, request) => {
+    const { login } = request.params;
+
+    const org = schema.organizations.findBy({ login });
+
+    return org.repositories.models[0].branches.models;
+  });
 }

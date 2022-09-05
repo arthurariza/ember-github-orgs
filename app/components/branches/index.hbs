@@ -1,8 +1,13 @@
-<div class='branches'>
-  <p class='branches__length'>Number of branches: {{@branches.length}}</p>
-  <ul class='branches__list'>
+<div class='branches' data-test-branches>
+  <p class='branches__length' data-test-branches-length>
+    Number Of Branches:
+    {{@branches.length}}
+  </p>
+  <ul class='branches__list' data-test-branches-list>
     {{#each @branches as |branch|}}
-      <li class='branches__list-item'>{{branch.name}}</li>
+      <li class='branches__list-item' data-test-branches-list-item>
+        {{branch.name}}
+      </li>
     {{/each}}
   </ul>
 </div>

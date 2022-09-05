@@ -13,6 +13,11 @@ module('Acceptance | repositories', function (hooks) {
       organization: organization,
     });
 
+    this.server.createList('repository', 30, {
+      organization: organization,
+      language: 'JavaScript',
+    });
+
     this.setProperties({
       organization,
     });
@@ -41,7 +46,7 @@ module('Acceptance | repositories', function (hooks) {
       `/organizations/${this.organization.login}/repositories`
     );
 
-    assert.dom('[data-test-repository-repo]').exists({ count: 30 });
+    assert.dom('[data-test-repository-repo]').exists({ count: 60 });
   });
 
   test('should redirect to index route with error when 404', async function (assert) {
@@ -64,5 +69,57 @@ module('Acceptance | repositories', function (hooks) {
     await click('[data-test-logo]');
 
     assert.strictEqual(currentURL(), '/');
+  });
+
+  test('shows all repositories by default', async function (assert) {
+    assert.expect(5);
+
+    await visit(`/organizations/${this.organization.login}/repositories`);
+
+    await click('[data-test-org-show-repo-link]');
+
+    assert
+      .dom('[data-test-repository-filter-title]')
+      .exists()
+      .hasText('Repositories');
+
+    assert.dom('[data-test-repository-filter-input]').exists();
+
+    assert.dom('[data-test-repository-not-found]').doesNotExist();
+
+    assert.dom('[data-test-repository-repo]').exists({ count: 60 });
+  });
+
+  test('repositories are filtered by language', async function (assert) {
+    assert.expect(8);
+
+    await visit(`/organizations/${this.organization.login}/repositories`);
+
+    await click('[data-test-org-show-repo-link]');
+
+    assert
+      .dom('[data-test-repository-filter-title]')
+      .exists()
+      .hasText('Repositories');
+
+    assert.dom('[data-test-repository-filter-input]').exists();
+
+    assert.dom('[data-test-repository-not-found]').doesNotExist();
+
+    await fillIn('[data-test-repository-filter-input]', 'ruby');
+
+    assert.dom('[data-test-repository-repo]').exists({ count: 30 });
+
+    await fillIn('[data-test-repository-filter-input]', 'rUBy');
+
+    assert.dom('[data-test-repository-repo]').exists({ count: 30 });
+
+    await fillIn('[data-test-repository-filter-input]', 'javascript');
+
+    assert.dom('[data-test-repository-repo]').exists({ count: 30 });
+
+    await fillIn('[data-test-repository-filter-input]', 'JAVAscript');
+
+    assert.dom('[data-test-repository-repo]').exists({ count: 30 });
   });
 });

@@ -1,4 +1,8 @@
-<Repositories::Filter @repositories={{@repositories}} as |repositories|>
+<Repositories::Filter
+  @repositories={{@repositories}}
+  @setStars={{@setStars}}
+  as |repositories|
+>
   {{#each repositories as |repo|}}
     <Repositories::Show @repository={{repo}} />
   {{else}}

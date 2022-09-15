@@ -1,6 +1,10 @@
 <div class='repository__show' data-test-repository-repo>
-  <p class='repository__label' data-test-repository-name>Name:
-    {{@repository.name}}</p>
+  <div class='repository__container'>
+    <p class='repository__label' data-test-repository-name>Name:
+      {{@repository.name}}
+    </p>
+    <p>Stars: {{@repository.stargazers_count}}</p>
+  </div>
   <p class='repository__label' data-test-repository-language>Language:
     {{@repository.language}}</p>
   <p class='repository__label' data-test-repository-private>Private?:

@@ -3,6 +3,12 @@
     font-size: 2rem;
   }
 
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
   &__input {
     padding: 0.5rem;
     border-radius: 5px;

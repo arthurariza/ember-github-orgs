@@ -10,4 +10,12 @@
   data-test-repository-filter-input
 />
 
+<label for='cars'>Sort Stars</label>
+
+<select name='cars' id='cars' {{on 'change' (pick 'target.value' @setStars)}}>
+  <option value=''></option>
+  <option value='asc'>Asc</option>
+  <option value='desc'>Desc</option>
+</select>
+
 {{yield this.filtered}}

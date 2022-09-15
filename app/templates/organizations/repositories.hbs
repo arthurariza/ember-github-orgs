@@ -2,7 +2,7 @@
 
 <div class='split-screen'>
   <div class='split-screen__half'>
-    <Repositories @repositories={{@model}} />
+    <Repositories @repositories={{this.byStars}} @setStars={{this.setStars}} />
   </div>
 
   <div class='split-screen__half'>
